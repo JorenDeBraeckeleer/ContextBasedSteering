@@ -10,7 +10,8 @@ BASIC CONTEXT STEERING:
 To start with the basics of context steering:
 We cast rays around the agent, this amount can vary depending on the behaviour you want.
 To make a simple example here, we cast 16 rays around the agent.
-![Alt text](relative/path/to/img.jpg?raw=true "Agent_16Rays")
+
+![ALT_TEXT](Screenshots/Agent_16Rays.png?raw=true "Agent_16Rays")
 
 Those rays combined will give us our final steering, but how do we get this...
 
