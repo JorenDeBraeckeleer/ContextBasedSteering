@@ -1,12 +1,12 @@
-# ContextBasedSteering
+#Context based steering
 
-BASIC STEERING BEHAVIOUR:
+##Basic steering behaviour
 To start of simple we make a simple seek behaviour.
 The agent will go to the marked place.
 
 Once we add a flee, arrive and wander behaviour we can start adjusting those with context steering.
 
-BASIC CONTEXT STEERING:
+##Basic context steering
 To start with the basics of context steering:
 We cast rays around the agent, this amount can vary depending on the behaviour you want.
 To make a simple example here, we cast 16 rays around the agent.
@@ -37,7 +37,7 @@ To get our final direction we add all the remaining positive rays and apply this
 
 ![ALT_TEXT](Screenshots/Agent_FinalDirection.png?raw=true "Agent_FinalDirection")
 
-EXPERIMENTAL CONTEXT STEERING:
+##Experimental context steering
 I tried improving the algorithm to get a closer result to the behaviour I was after.
 
 The vector with direction rays stays the same, but we change our 'interests' and 'dangers' into 1 weight vector.
@@ -59,7 +59,7 @@ We can do this aswell with flee:
 For arrive:
 -Same as seek but change velocity when approaching the 'seek' point
 
-SUMMARY
+##Sumarry
 We covered 4 basic steering behaviours and implemented those with context steering.
 -Context steering is very useful and can be combined with other steering behaviours, it's definitely a good option if you have a continuously changing environment, for static environments there are better options out there.
 -I didn't expect to find as much useful cases as I did, with a bit more time I would definitely like to add a way to move from one location to another while keeping hold of the context (like going around a race track).
