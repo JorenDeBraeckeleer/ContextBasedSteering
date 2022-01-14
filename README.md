@@ -39,44 +39,44 @@
 ## Experimental context steering
 I tried improving the algorithm to get a closer result to the behaviour I was after.
 
-The vector with direction rays stays the same, but we change our 'interests' and 'dangers' into 1 weight vector.
-A ray in the weight vector has a default value. This default value can vary depending on what behaviour you are after:
--Changing the default value to the speed you are travelling at will cause better response time when going fast and slower response time when going slow, which mimics a much more natural feeling of avoiding an obstacle.
--Changing it to a larger value will cause the agent to start dodging an obstacle earlier, a smaller value will to the opposite.
+1. We adapt our ray length on variables.
+    - More natural response.
 
 ![ALT_TEXT](/Media/DefaultRayLength.gif?raw=true "Context_StartRayLength")
 > Ray length depends on velocity.
 
+2. Counter steering when encountering 'danger'.
+    - Better avoidance of obstacle.
+
 ![ALT_TEXT](/Media/CounterSteering.gif?raw=true "Context_CounterSteering")
 > Counter steering for better obstacle avoidance.
 
-Weights: 'interests' make the ray longer (total direction will be closer to this one), 'dangers' make the ray shorter (total direction will be further away from this one).
-If a ray finds an obstacle we also give a notification to the neighbouring rays, those will shrink aswell to focus on avoiding the obstacle.
+3. We change 'interests' and 'dangers' to 1 'weights' vector.
+    - Allows for better control over the length of rays.
+
+4. Influencing neighbouring rays.
+    - Neighbours gain or lose length depending on what neighbouring rays encounter.
 
 ![ALT_TEXT](/Media/WeightSteering.gif?raw=true "Context_WeightSteering")
-> Blue ray is the final direction.
+> Weight steering with neighbour influence. (Red is short or low influence, green is long or high influence.)
 
-To make the code a bit more visible I added some colorful debugging options:
-
-Untill this point we did everything with a seek behaviour, let's change this up and add a wander:
--We change our 'interest' to a random point, this means that the agent will wander through the level but when it notices an obstacle the agent will move around it and not go straight into a wall.
+### Adding different behaviours
+1. Wander.
+    - We change our 'interest' to a random point.
 
 ![ALT_TEXT](/Media/Wander.gif?raw=true "Context_Wander")
 > Wander behaviour with context steering.
 
-We can do this aswell with flee:
--Positve weights in the opposite direction from a specific point
+2. Flee.
+    - Opposite from seek.
 
 ![ALT_TEXT](/Media/Flee.gif?raw=true "Context_Flee")
 > Flee behaviour with context steering.
 
-For arrive:
--Same as seek but change velocity when approaching the 'seek' point
-
 ## Sumarry
-We covered 4 basic steering behaviours and implemented those with context steering.
--Context steering is very useful and can be combined with other steering behaviours, it's definitely a good option if you have a continuously changing environment, for static environments there are better options out there.
--I didn't expect to find as much useful cases as I did, with a bit more time I would definitely like to add a way to move from one location to another while keeping hold of the context (like going around a race track).
+- Context steering is very useful and can be easily be combined with other steering behaviours.
+- It's a good behaviour if you have a continuously changing environment, for static environments there are better options out there.
+- If I have more time I would definitely like to add a way to move from one location to another (like going around a race track).
 
-
-This project used the Elite framework by Matthieu Delaere, Thomas Goussaert, Andries Geens and Yosha Vandaele.
+## End
+*This project used the Elite framework by Matthieu Delaere, Thomas Goussaert, Andries Geens and Yosha Vandaele.*
