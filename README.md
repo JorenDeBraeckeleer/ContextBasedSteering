@@ -1,41 +1,38 @@
 # Context based steering
 
 ## Basic steering behaviour
-To start of simple we make a simple seek behaviour.
-The agent will go to the marked place.
-
-Once we add a flee, arrive and wander behaviour we can start adjusting those with context steering.
+**Start:** we make a simple 'seek' behaviour.
+- The agent moves to the marked location.
 
 ## Basic context steering
-To start with the basics of context steering:
-We cast rays around the agent, this amount can vary depending on the behaviour you want.
-To make a simple example here, we cast 16 rays around the agent.
+1. Casting directional rays.
+    - We cast rays outwards from the agent.
+    - The amount of rays can vary depending on the wanted behaviour.
 
 ![ALT_TEXT](Screenshots/Agent_16Rays.png?raw=true "Agent_16Rays")
+> A simple example with 16 rays.
 
-Those rays combined will give us our final steering, but how do we get this...
-
-We create a vectors, with a size of the amount of rays, and initialize them with 0's at the start.
-
-The first vector we create is for the direction of the rays:
--Calculate the angle between every ray and assign the final direction of every ray to the vector.
-
-The second vector is for our positive values or 'interests':
--Our interest is the position we want to move to.
--With our direction we are interested in and the direction of the ray we can calculate our interest for every ray.
+2. Create a vector for positive values or 'interests'.
+    - Interests are postitions we want to move to.
+      - ```ray = dot(direction, postiveRay);```
 
 ![ALT_TEXT](Screenshots/Agent_PosRays.png?raw=true "Agent_PosRays")
+> Interest is in front of the agent.
 
-The third and final vector is for our negative values or 'dangers':
--Our dangers can be obstacles, like we will use for the example, or many other things like enemies etc.
--If an obstacle intersects with a ray we can assign a value to the ray.
--This value, which means 'danger', will nullify the ray in the positive vector because something is blocking our way.
+3. Create a vector for negative values or 'dangers'.
+    - Dangers can be obstacles, enemies, forbidden zones etc.
+      - ```negativeRay = isIntersectingDanger ? 1 : 0;```
+    - Negative values negate positive values.
+      - ```positiveRay = negativeRay > 0 ? 0 : postiveRay;```
 
 ![ALT_TEXT](Screenshots/Agent_NegRays.png?raw=true "Agent_NegRays")
+> Rays intersecting with the obstacle aren't used.
 
-To get our final direction we add all the remaining positive rays and apply this direction to our agent.
+4. Calculate final direction with remaining 'interests'.
+    - ```steering += direction * positiveRay;```
 
 ![ALT_TEXT](Screenshots/Agent_FinalDirection.png?raw=true "Agent_FinalDirection")
+> Blue ray is the final direction.
 
 ## Experimental context steering
 I tried improving the algorithm to get a closer result to the behaviour I was after.
