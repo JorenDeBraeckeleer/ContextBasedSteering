@@ -24,12 +24,18 @@ The second vector is for our positive values or 'interests':
 -Our interest is the position we want to move to.
 -With our direction we are interested in and the direction of the ray we can calculate our interest for every ray.
 
+![ALT_TEXT](Screenshots/Agent_PosRays.png?raw=true "Agent_PosRays")
+
 The third and final vector is for our negative values or 'dangers':
 -Our dangers can be obstacles, like we will use for the example, or many other things like enemies etc.
 -If an obstacle intersects with a ray we can assign a value to the ray.
 -This value, which means 'danger', will nullify the ray in the positive vector because something is blocking our way.
 
+![ALT_TEXT](Screenshots/Agent_NegRays.png?raw=true "Agent_NegRays")
+
 To get our final direction we add all the remaining positive rays and apply this direction to our agent.
+
+![ALT_TEXT](Screenshots/Agent_FinalDirection.png?raw=true "Agent_FinalDirection")
 
 EXPERIMENTAL CONTEXT STEERING:
 I tried improving the algorithm to get a closer result to the behaviour I was after.
