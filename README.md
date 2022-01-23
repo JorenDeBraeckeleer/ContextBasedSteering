@@ -80,3 +80,6 @@ I tried improving the algorithm to get a closer result to the behaviour I was af
 
 ## End
 *This project used the Elite framework by Matthieu Delaere, Thomas Goussaert, Andries Geens and Yosha Vandaele.*
+
+## Editor's note
+> Project is in Master branch, add the lib and include folders to get the project working (first time with GitHub, I don't what what I did wrong 😅)
